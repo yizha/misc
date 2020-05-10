@@ -33,13 +33,18 @@
     (exec-path-from-shell-initialize)
     (exec-path-from-shell-copy-env "GOPATH")))
 
+(use-package flycheck)
+
 (use-package go-mode
   :defer t
   :mode ("\\.go\\'" . go-mode))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred))
+  :hook (go-mode . lsp-deferred)
+  :config
+    ;; use flycheck, not flymake
+    (setq lsp-prefer-flymake nil))
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
