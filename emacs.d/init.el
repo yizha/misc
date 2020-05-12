@@ -1,18 +1,18 @@
 (package-initialize)
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
-;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+;(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; This is only needed once, near the top of the file
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  (add-to-list 'load-path "/Users/yizha/.emacs.d/elpa/use-package-2.4")
+  (add-to-list 'load-path "~/.emacs.d/elpa/use-package-2.4")
   (require 'use-package)
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
-(setq tab-width 4)
+(setq-default tab-width 4)
 (global-hl-line-mode t)
 (global-linum-mode t)
 (column-number-mode t)
@@ -55,7 +55,8 @@
 
 ;; Optional - provides fancier overlays.
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config (setq lsp-ui-flycheck-enable t))
 
 ;; Company mode is a standard completion package that works well with lsp-mode.
 (use-package company
@@ -74,7 +75,7 @@
   :commands yas-minor-mode
   :hook (go-mode . yas-minor-mode))
 
-(add-to-list 'custom-theme-load-path "/Users/yizha/.emacs.d/local/emacs-color-theme-solarized")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/local/emacs-color-theme-solarized")
 (load-theme 'solarized t)
 
 (custom-set-variables
